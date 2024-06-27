@@ -1,0 +1,355 @@
+digraph spdk {
+    graph [
+        rankdir = "LR"
+        //splines=polyline
+        //overlap=false
+    ];
+
+    node [
+        fontsize = "16"
+        shape = "ellipse"
+    ];
+
+    edge [
+    ];
+    "bus_type" [
+        label = "<head> bus_type\l|
+            {|{
+                <*name> *name\l|
+                <*dev_name> *dev_name\l|
+                <device> *dev_root\l|
+                <attribute_group> **bus_groups\l|
+                <attribute_group> **dev_groups\l|
+                <attribute_group> **drv_groups\l|
+                <*match> (*match)\l|
+                <*uevent> (*uevent)\l|
+                <*probe> (*probe)\l|
+                <*remove> (*remove)\l|
+                <*shutdown> (*shutdown)\l|
+                <*online> (*online)\l|
+                <*offline> (*offline)\l|
+                <*suspend> (*suspend)\l|
+                <*resume> (*resume)\l|
+                <*num_vf> (*num_vf)\l|
+                <*dma_configure> (*dma_configure)\l|
+                <dev_pm_ops> *pm\l|
+                <iommu_ops> *iommu_ops\l|
+                <subsys_private> *p\l|
+                <lock_class_key> lock_key\l|
+                <need_parent_lock> need_parent_lock\l|
+            }}"
+        shape = "record"
+    ];
+    "pci_driver" [
+        label = "<head> pci_driver\l|
+            {|{
+                <list_head> node\l|
+                <*name> *name\l|
+                <pci_device_id> *id_table\l|
+                <*probe> (*probe)\l|
+                <*remove> (*remove)\l|
+                <*suspend> (*suspend)\l|
+                <*suspend_late> (*suspend_late)\l|
+                <*resume_early> (*resume_early)\l|
+                <*resume> (*resume)\l|
+                <*shutdown> (*shutdown)\l|
+                <*sriov_configure> (*sriov_configure)\l|
+                <pci_error_handlers> *err_handler\l|
+                <attribute_group> **groups\l|
+                <device_driver> driver\l|
+                <pci_dynids> dynids\l|
+            }}"
+        shape = "record"
+    ];
+    "device_driver" [
+        label = "<head> device_driver\l|
+            {|{
+                <*name> *name\l|
+                <bus_type> *bus\l|
+                <module> *owner\l|
+                <*mod_name> *mod_name\l|
+                <suppress_bind_attrs> suppress_bind_attrs\l|
+                <probe_type> probe_type\l|
+                <of_device_id> *of_match_table\l|
+                <acpi_device_id> *acpi_match_table\l|
+                <*probe> (*probe)\l|
+                <*remove> (*remove)\l|
+                <*shutdown> (*shutdown)\l|
+                <*suspend> (*suspend)\l|
+                <*resume> (*resume)\l|
+                <attribute_group> **groups\l|
+                <dev_pm_ops> *pm\l|
+                <*coredump> (*coredump)\l|
+                <driver_private> *p\l|
+            }}"
+        shape = "record"
+    ];
+    "driver_private" [
+        label = "<head> driver_private\l|
+            {|{
+                <kobject> kobj\l|
+                <klist> klist_devices\l|
+                <klist_node> knode_bus\l|
+                <module_kobject> *mkobj\l|
+                <device_driver> *driver\l|
+            }}"
+        shape = "record"
+    ];
+    "kobject" [
+        label = "<head> kobject\l|
+            {|{
+                <*name> *name\l|
+                <list_head> entry\l|
+                <kobject> *parent\l|
+                <kset> *kset\l|
+                <kobj_type> *ktype\l|
+                <kernfs_node> *sd\l|
+                <kref> kref\l|
+                <delayed_work> release\l|
+            }}"
+        shape = "record"
+    ];
+    "subsys_private" [
+        label = "<head> subsys_private\l|
+            {|{
+                <kset> subsys\l|
+                <kset> *devices_kset\l|
+                <list_head> interfaces\l|
+                <mutex> mutex\l|
+                <kset> *drivers_kset\l|
+                <klist> klist_devices\l|
+                <klist> klist_drivers\l|
+                <blocking_notifier_head> bus_notifier\l|
+                <bus_type> *bus\l|
+                <kset> glue_dirs\l|
+                <class> *class\l|
+            }}"
+        shape = "record"
+    ];
+    "kset" [
+        label = "<head> kset\l|
+            {|{
+                <list_head> list\l|
+                <list_lock> list_lock\l|
+                <kobject> kobj\l|
+                <kset_uevent_ops> *uevent_ops\l|
+            }}"
+        shape = "record"
+    ];
+    "kobj_type" [
+        label = "<head> kobj_type\l|
+            {|{
+                <*release> (*release)\l|
+                <sysfs_ops> *sysfs_ops\l|
+                <attribute> **default_attrs\l|
+                <*child_ns_type> (*child_ns_type)\l|
+                <*namespace> (*namespace)\l|
+            }}"
+        shape = "record"
+    ];
+    "sysfs_ops" [
+        label = "<head> sysfs_ops\l|
+            {|{
+                <*show> (*show)\l|
+                <*store> (*store)\l|
+            }}"
+        shape = "record"
+    ];
+    "dev_pm_ops" [
+        label = "<head> dev_pm_ops\l|
+            {|{
+                <*prepare> (*prepare)\l|
+                <*complete> (*complete)\l|
+                <*suspend> (*suspend)\l|
+                <*resume> (*resume)\l|
+                <*freeze> (*freeze)\l|
+                <*thaw> (*thaw)\l|
+                <*poweroff> (*poweroff)\l|
+                <*restore> (*restore)\l|
+                <*suspend_late> (*suspend_late)\l|
+            }}"
+        shape = "record"
+    ];
+    "kset_uevent_ops" [
+        label = "<head> kset_uevent_ops\l|
+            {|{
+                <* filter> (* filter)\l|
+                <* name> (* name)\l|
+                <* uevent> (* uevent)\l|
+            }}"
+        shape = "record"
+    ];
+    "qla_init_msix_entry" [
+        label = "<head> qla_init_msix_entry\l|
+            {|{
+                <*name> *name\l|
+                <handler> handler\l|
+            }}"
+        shape = "record"
+    ];
+    "attribute_group" [
+        label = "<head> attribute_group\l|
+            {|{
+                <*name> *name\l|
+                <*is_visible> (*is_visible)\l|
+                <*is_bin_visible> (*is_bin_visible)\l|
+                <attribute> **attrs\l|
+                <bin_attribute> **bin_attrs\l|
+            }}"
+        shape = "record"
+    ];
+    "bus_attribute" [
+        label = "<head> bus_attribute\l|
+            {|{
+                <attribute> attr\l|
+                <*show> (*show)\l|
+                <*store> (*store)\l|
+            }}"
+        shape = "record"
+    ];
+    "klist" [
+        label = "<head> klist\l|
+            {|{
+                <k_lock> k_lock\l|
+                <list_head> k_list\l|
+                <*get> (*get)\l|
+                <*put> (*put)\l|
+            }}"
+        shape = "record"
+    ];
+    "pci_device_id" [
+        label = "<head> pci_device_id\l|
+            {|{
+                <vendor_device> vendor_device\l|
+                <subvendor_subdevice> subvendor_subdevice\l|
+                <class_class_mask> class_class_mask\l|
+                <driver_data> driver_data\l|
+            }}"
+        shape = "record"
+    ];
+    "device" [
+        label = "<head> device\l|
+            {|{
+                <device> *parent\l|
+                <device_private> *p\l|
+                <kobject> kobj\l|
+                <*init_name> *init_name\l|
+                <device_type> *type\l|
+                <mutex> mutex\l|
+                <bus_type> *bus\l|
+                <device_driver> *driver\l|
+                <*platform_data> *platform_data\l|
+                <*driver_data> *driver_data\l|
+                <dev_links_info> links\l|
+                <attribute_group> **groups\l|
+                <*release> (*release)\l|
+                <iommu_group> *iommu_group\l|
+                <iommu_fwspec> *iommu_fwspec\l|
+            }}"
+        shape = "record"
+    ];
+    "dev_links_info" [
+        label = "<head> dev_links_info\l|
+            {|{
+                <list_head> suppliers\l|
+                <list_head> consumers\l|
+                <status> status\l|
+            }}"
+        shape = "record"
+    ];
+    "pci_dynids" [
+        label = "<head> pci_dynids\l|
+            {|{
+                <lock> lock\l|
+                <list_head> list\l|
+            }}"
+        shape = "record"
+    ];
+    "qla2xxx_pci_driver" [
+        label = "<head> qla2xxx_pci_driver\l|
+            {|{
+                <pci_driver> pci_driver\l|
+            }}"
+        shape = "record"
+    ];
+    "pci_bus_type" [
+        label = "<head> pci_bus_type\l|
+            {|{
+                <bus_type> bus_type\l|
+            }}"
+        shape = "record"
+    ];
+    "driver_ktype" [
+        label = "<head> driver_ktype\l|
+            {|{
+                <kobj_type> kobj_type\l|
+            }}"
+        shape = "record"
+    ];
+    "driver_sysfs_ops" [
+        label = "<head> driver_sysfs_ops\l|
+            {|{
+                <sysfs_ops> sysfs_ops\l|
+            }}"
+        shape = "record"
+    ];
+    "qla2xxx_pci_tbl" [
+        label = "<head> qla2xxx_pci_tbl\l|
+            {|{
+                <pci_device_id> pci_device_id\l|
+            }}"
+        shape = "record"
+    ];
+    "bus_kset" [
+        label = "<head> bus_kset\l|
+            {|{
+                <kset> kset\l|
+            }}"
+        shape = "record"
+    ];
+    "bus_uevent_ops" [
+        label = "<head> bus_uevent_ops\l|
+            {|{
+                <kset_uevent_ops> kset_uevent_ops\l|
+            }}"
+        shape = "record"
+    ];
+
+    device_driver:bus_type -> bus_type:head[color="red"]
+    pci_driver:device_driver -> device_driver:head[color="green"]
+    driver_private:device_driver -> device_driver:head[color="blue"]
+    device_driver:driver_private -> driver_private:head[color="black"]
+    kobject:kobject -> kobject:head[color="blueviolet"]
+    driver_private:kobject -> kobject:head[color="brown"]
+    subsys_private:bus_type -> bus_type:head[color="cadetblue"]
+    bus_type:subsys_private -> subsys_private:head[color="chocolate"]
+    kset:kobject -> kobject:head[color="crimson"]
+    kobject:kset -> kset:head[color="cyan"]
+    subsys_private:kset -> kset:head[color="darkgrey"]
+    kobject:kobj_type -> kobj_type:head[color="deeppink"]
+    kobj_type:sysfs_ops -> sysfs_ops:head[color="darkred"]
+    bus_type:dev_pm_ops -> dev_pm_ops:head[color="red"]
+    device_driver:dev_pm_ops -> dev_pm_ops:head[color="green"]
+    kset:kset_uevent_ops -> kset_uevent_ops:head[color="blue"]
+    bus_type:attribute_group -> attribute_group:head[color="black"]
+    pci_driver:attribute_group -> attribute_group:head[color="blueviolet"]
+    device_driver:attribute_group -> attribute_group:head[color="brown"]
+    driver_private:klist -> klist:head[color="cadetblue"]
+    subsys_private:klist -> klist:head[color="chocolate"]
+    pci_driver:pci_device_id -> pci_device_id:head[color="crimson"]
+    device:device -> device:head[color="cyan"]
+    device:kobject -> kobject:head[color="darkgrey"]
+    device:bus_type -> bus_type:head[color="deeppink"]
+    device:device_driver -> device_driver:head[color="darkred"]
+    device:attribute_group -> attribute_group:head[color="red"]
+    bus_type:device -> device:head[color="green"]
+    device:dev_links_info -> dev_links_info:head[color="blue"]
+    pci_driver:pci_dynids -> pci_dynids:head[color="black"]
+    qla2xxx_pci_driver:pci_driver -> pci_driver:head[color="blueviolet"]
+    pci_bus_type:bus_type -> bus_type:head[color="brown"]
+    driver_ktype:kobj_type -> kobj_type:head[color="cadetblue"]
+    driver_sysfs_ops:sysfs_ops -> sysfs_ops:head[color="chocolate"]
+    qla2xxx_pci_tbl:pci_device_id -> pci_device_id:head[color="crimson"]
+    bus_kset:kset -> kset:head[color="cyan"]
+    bus_uevent_ops:kset_uevent_ops -> kset_uevent_ops:head[color="darkgrey"]
+}
